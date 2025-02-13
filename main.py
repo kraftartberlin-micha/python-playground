@@ -1,4 +1,7 @@
-import gameManager
+import game_manager
+from games.tictactoe import Tictactoe
+from game_collection import GameCollection
 
-games = [{"name": "tic tac toe", "class": "games.tictactoe.Tictactoe"}]
-gameManager.Gamemanager.run(games)
+gameCollection = GameCollection()
+gameCollection.add_game(Tictactoe())
+game_manager.GameManager.run(gameCollection)

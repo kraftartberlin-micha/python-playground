@@ -18,11 +18,11 @@ class GameManager:
 
     @staticmethod
     def run(games: GameCollection) -> None:
+        """
+        this will run the prompt manager to ask for game to start
+        """
         while True:
             try:
-                """
-                this will run the prompt manager to ask for game to start
-                """
                 GameManager.__start_manager__(games)
                 break
             except (RuntimeError, UserWarning) as e:

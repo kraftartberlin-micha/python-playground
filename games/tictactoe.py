@@ -25,50 +25,50 @@ class Tictactoe(Game):
         self.game_name = 'Tic Tac Toe'
 
     def play(self) -> None:
-        self.__create_new_game_map()
-        self.__reset_current_player()
+        self.__create_new_game_map__()
+        self.__reset_current_player__()
 
         while True:
-            self.__print_game_map()
+            self.__print_game_map__()
             try:
                 row = GameInput.getUserInput(self.current_player)
                 column = GameInput.getUserInput(self.current_player, False)
-                self.__fire(self.current_player, row, column)
+                self.__fire__(self.current_player, row, column)
             except BaseException as exception:
                 print(self.MSG_TRY_AGAIN.format(str(exception)))
                 continue
 
-            winner = self.__check_hit()
-            if winner:
-                self.__print_game_map()
+            win = self.__check_win__()
+            if win:
+                self.__print_game_map__()
                 print(self.MSG_WINNER.format(self.current_player))
                 break
-            if self.__check_end():
-                self.__print_game_map()
+            if self.__check_end__():
+                self.__print_game_map__()
                 print(self.MSG_NO_WINNER)
                 break
 
             self.current_player = self.second_player if self.current_player == self.first_player else self.second_player
         print(self.MSG_THX_BYE)
 
-    def __create_new_game_map(self) -> None:
+    def __create_new_game_map__(self) -> None:
         self.battlefield = []
         for i in range(3):
             row = [" ", " ", " "]
             self.battlefield.append(row)
 
-    def __print_game_map(self) -> None:
+    def __print_game_map__(self) -> None:
         for row in self.battlefield:
             print("|".join(row))
             print("-----")
 
-    def __fire(self, player, row, column) -> True:
+    def __fire__(self, player, row, column) -> True:
         if self.battlefield[row][column] == " ":
             self.battlefield[row][column] = player
             return True
         raise Exception(self.MSG_NOT_EMPTY)
 
-    def __check_hit(self) -> bool:
+    def __check_win__(self) -> bool:
         for row in range(3):
             if self.battlefield[row][0] == self.battlefield[row][1] == self.battlefield[row][2] != " ":
                 return True
@@ -79,11 +79,11 @@ class Tictactoe(Game):
             return True
         return False
 
-    def __check_end(self) -> bool:
+    def __check_end__(self) -> bool:
         for row in self.battlefield:
             if " " in row:
                 return False
         return True
 
-    def __reset_current_player(self) -> None:
+    def __reset_current_player__(self) -> None:
         self.current_player = self.first_player

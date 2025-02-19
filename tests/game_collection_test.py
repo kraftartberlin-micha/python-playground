@@ -18,7 +18,9 @@ class MyTestCase(unittest.TestCase):
 
     def test_len_will_return_amount_of_items_also_when_empty(self):
         collection: GameCollection = GameCollection()
-
+        # todo: test fail when run both tests.
+        #  new object has the filled attribute from object before like a static class?
+        #  i missed something in python logic
         self.assertEqual(0, collection.len())
 
 
